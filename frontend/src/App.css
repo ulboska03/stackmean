@@ -1,0 +1,55 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.App.light {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.App.dark {
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+.App-header {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+}
+
+.App.dark .App-header {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  background-color: #61dafb;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
