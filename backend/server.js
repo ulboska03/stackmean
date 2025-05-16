@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const app = express();
 app.use(express.json());
+const NodeCache = require("node:cache");
+const PORT = process.env.PORT || 3000;
+const cache = new NodeCache({stdTTL: 60});
+
+
 
 mongoose.connect('mongodb://mongo:27017/mern-db', {
     useNewUrlParser: true,
@@ -17,6 +22,24 @@ const authMiddleware = (req, res, next) => {
     }
     next();
 };
+
+
+const cacheMiddleware = (req, res, next) => {
+    const key = req.originalUrl || req.url;
+    const cachedData = cache.get(key);
+    if (cachedData) {
+        console.log("Serving from cache");
+        res.send(cachedData);
+    } else {
+        res.sendResponse = res.send;
+        res.send = (body) => {
+            cache.set(key, body);
+            res.sendResponse(body);
+        };
+        next();
+    }
+};
+
 
 app.get('/api/protected', authMiddleware, (req, res) => {
     res.json({ message: 'You have access to this protected route' });
