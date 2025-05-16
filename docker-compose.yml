@@ -5,10 +5,12 @@ services:
     container_name: backend
     environment:
       - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/mern-db
     depends_on:
       - mongo
     networks:
       - app-network
+
 
 
   frontend:

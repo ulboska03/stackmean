@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const app = express();
 app.use(express.json());
-const NodeCache = require("node:cache");
-const PORT = process.env.PORT || 3000;
-const cache = new NodeCache({stdTTL: 60});
+const productRoutes = require("./routes/product");
+require("dotenv").config();
+const NodeCache = require("node-cache");
+const cache = new NodeCache();
 
 
 
